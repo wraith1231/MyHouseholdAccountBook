@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+class MonthlySummary;
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -19,5 +21,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    MonthlySummary* _monthlySummary;
 };
 #endif // MAINWINDOW_H
