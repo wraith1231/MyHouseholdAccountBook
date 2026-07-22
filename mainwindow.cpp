@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->dateEdit->setCalendarPopup(true);
 
     ui->dateEdit->setDate(QDate::currentDate());
+
+
     //Time Set End
 
     //_monthlySummary = new MonthlySummary(ui->MonthlySummaryView, this);
@@ -23,3 +25,27 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_ButtonDetailsInsert_clicked()
+{
+
+}
+
+
+void MainWindow::on_ButtonDetailsUpdate_clicked()
+{
+
+}
+
+
+void MainWindow::on_ButtonDetailsDelete_clicked()
+{
+
+}
+
+
+void MainWindow::on_dateEdit_userDateChanged(const QDate &date)
+{
+
+}
+

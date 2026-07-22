@@ -19,6 +19,15 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
 
+private slots:
+    void on_ButtonDetailsInsert_clicked();
+
+    void on_ButtonDetailsUpdate_clicked();
+
+    void on_ButtonDetailsDelete_clicked();
+
+    void on_dateEdit_userDateChanged(const QDate &date);
+
 private:
     Ui::MainWindow *ui;
     MonthlySummary* _monthlySummary;
