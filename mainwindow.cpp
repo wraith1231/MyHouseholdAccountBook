@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "./monthlysummary.h"
+#include "./monthlydetails.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -16,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     //Time Set End
-
+    _monthlyDetails = new MonthlyDetails(ui->tableMonthlyDetails, this);
     //_monthlySummary = new MonthlySummary(ui->MonthlySummaryView, this);
 
 }
@@ -45,6 +46,12 @@ void MainWindow::on_ButtonDetailsDelete_clicked()
 
 
 void MainWindow::on_dateEdit_userDateChanged(const QDate &date)
+{
+
+}
+
+
+void MainWindow::on_SearchDetails_textChanged()
 {
 
 }

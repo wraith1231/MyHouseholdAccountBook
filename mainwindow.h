@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 class MonthlySummary;
+class MonthlyDetails;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -28,8 +29,11 @@ private slots:
 
     void on_dateEdit_userDateChanged(const QDate &date);
 
+    void on_SearchDetails_textChanged();
+
 private:
     Ui::MainWindow *ui;
     MonthlySummary* _monthlySummary;
+    MonthlyDetails* _monthlyDetails;
 };
 #endif // MAINWINDOW_H

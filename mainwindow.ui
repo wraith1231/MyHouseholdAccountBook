@@ -401,7 +401,31 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_11">
          <item>
-          <widget class="QTableView" name="tableMonthlyDetails"/>
+          <widget class="QTableView" name="tableMonthlyDetails">
+           <property name="styleSheet">
+            <string notr="true">날짜
+구분
+내용
+금액
+메모
+</string>
+           </property>
+           <property name="editTriggers">
+            <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+           </property>
+           <property name="alternatingRowColors">
+            <bool>true</bool>
+           </property>
+           <property name="selectionMode">
+            <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+           </property>
+           <property name="selectionBehavior">
+            <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+           </property>
+           <property name="sortingEnabled">
+            <bool>true</bool>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -433,6 +457,34 @@
           <widget class="QPushButton" name="ButtonDetailsDelete">
            <property name="text">
             <string>삭제</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>400</x>
+          <y>50</y>
+          <width>371</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>검색</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTextEdit" name="SearchDetails">
+           <property name="font">
+            <font>
+             <pointsize>9</pointsize>
+            </font>
            </property>
           </widget>
          </item>
@@ -760,8 +812,44 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>메뉴</string>
+    </property>
+    <addaction name="actionDashboard"/>
+    <addaction name="actionSummary"/>
+    <addaction name="actionSummary_2"/>
+    <addaction name="actionSummary_3"/>
+    <addaction name="actionSetting"/>
+   </widget>
+   <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionDashboard">
+   <property name="text">
+    <string>Dashboard</string>
+   </property>
+  </action>
+  <action name="actionSummary">
+   <property name="text">
+    <string>Wealth</string>
+   </property>
+  </action>
+  <action name="actionSummary_2">
+   <property name="text">
+    <string>Loan</string>
+   </property>
+  </action>
+  <action name="actionSummary_3">
+   <property name="text">
+    <string>Summary</string>
+   </property>
+  </action>
+  <action name="actionSetting">
+   <property name="text">
+    <string>Setting</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

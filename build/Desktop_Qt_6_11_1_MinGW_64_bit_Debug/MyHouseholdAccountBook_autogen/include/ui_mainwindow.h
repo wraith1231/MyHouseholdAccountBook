@@ -10,6 +10,7 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QFrame>
@@ -18,11 +19,13 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableView>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -31,6 +34,11 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *actionDashboard;
+    QAction *actionSummary;
+    QAction *actionSummary_2;
+    QAction *actionSummary_3;
+    QAction *actionSetting;
     QWidget *centralwidget;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *TitleLayout;
@@ -82,6 +90,10 @@ public:
     QPushButton *ButtonDetailsInsert;
     QPushButton *ButtonDetailsUpdate;
     QPushButton *ButtonDetailsDelete;
+    QWidget *horizontalLayoutWidget_2;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *label_7;
+    QTextEdit *SearchDetails;
     QWidget *gridLayoutWidget_3;
     QGridLayout *YearlySummaryLayout;
     QGridLayout *gridLayout_3;
@@ -116,6 +128,7 @@ public:
     QLabel *LabelYearlySaving;
     QFrame *line_8;
     QMenuBar *menubar;
+    QMenu *menu;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -123,6 +136,16 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
         MainWindow->resize(800, 990);
+        actionDashboard = new QAction(MainWindow);
+        actionDashboard->setObjectName("actionDashboard");
+        actionSummary = new QAction(MainWindow);
+        actionSummary->setObjectName("actionSummary");
+        actionSummary_2 = new QAction(MainWindow);
+        actionSummary_2->setObjectName("actionSummary_2");
+        actionSummary_3 = new QAction(MainWindow);
+        actionSummary_3->setObjectName("actionSummary_3");
+        actionSetting = new QAction(MainWindow);
+        actionSetting->setObjectName("actionSetting");
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         verticalLayoutWidget = new QWidget(centralwidget);
@@ -343,6 +366,17 @@ public:
         verticalLayout_11->setContentsMargins(0, 0, 0, 0);
         tableMonthlyDetails = new QTableView(verticalLayoutWidget_13);
         tableMonthlyDetails->setObjectName("tableMonthlyDetails");
+        tableMonthlyDetails->setStyleSheet(QString::fromUtf8("\353\202\240\354\247\234\n"
+"\352\265\254\353\266\204\n"
+"\353\202\264\354\232\251\n"
+"\352\270\210\354\225\241\n"
+"\353\251\224\353\252\250\n"
+""));
+        tableMonthlyDetails->setEditTriggers(QAbstractItemView::EditTrigger::NoEditTriggers);
+        tableMonthlyDetails->setAlternatingRowColors(true);
+        tableMonthlyDetails->setSelectionMode(QAbstractItemView::SelectionMode::SingleSelection);
+        tableMonthlyDetails->setSelectionBehavior(QAbstractItemView::SelectionBehavior::SelectRows);
+        tableMonthlyDetails->setSortingEnabled(true);
 
         verticalLayout_11->addWidget(tableMonthlyDetails);
 
@@ -367,6 +401,25 @@ public:
 
         horizontalLayout_4->addWidget(ButtonDetailsDelete);
 
+        horizontalLayoutWidget_2 = new QWidget(widget_5);
+        horizontalLayoutWidget_2->setObjectName("horizontalLayoutWidget_2");
+        horizontalLayoutWidget_2->setGeometry(QRect(400, 50, 371, 31));
+        horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget_2);
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        label_7 = new QLabel(horizontalLayoutWidget_2);
+        label_7->setObjectName("label_7");
+
+        horizontalLayout_2->addWidget(label_7);
+
+        SearchDetails = new QTextEdit(horizontalLayoutWidget_2);
+        SearchDetails->setObjectName("SearchDetails");
+        QFont font4;
+        font4.setPointSize(9);
+        SearchDetails->setFont(font4);
+
+        horizontalLayout_2->addWidget(SearchDetails);
+
 
         DetailsLayout->addWidget(widget_5, 0, 0, 1, 1);
 
@@ -382,10 +435,10 @@ public:
         verticalLayout->setObjectName("verticalLayout");
         label_4 = new QLabel(gridLayoutWidget_3);
         label_4->setObjectName("label_4");
-        QFont font4;
-        font4.setPointSize(12);
-        font4.setBold(true);
-        label_4->setFont(font4);
+        QFont font5;
+        font5.setPointSize(12);
+        font5.setBold(true);
+        label_4->setFont(font5);
         label_4->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         verticalLayout->addWidget(label_4);
@@ -408,10 +461,10 @@ public:
         verticalLayout_6->setContentsMargins(0, 0, 0, 0);
         label_9 = new QLabel(verticalLayoutWidget_8);
         label_9->setObjectName("label_9");
-        QFont font5;
-        font5.setPointSize(11);
-        font5.setBold(true);
-        label_9->setFont(font5);
+        QFont font6;
+        font6.setPointSize(11);
+        font6.setBold(true);
+        label_9->setFont(font6);
         label_9->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         verticalLayout_6->addWidget(label_9);
@@ -422,7 +475,7 @@ public:
 
         LabelYearlyExpense = new QLabel(verticalLayoutWidget_8);
         LabelYearlyExpense->setObjectName("LabelYearlyExpense");
-        LabelYearlyExpense->setFont(font5);
+        LabelYearlyExpense->setFont(font6);
         LabelYearlyExpense->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         verticalLayout_6->addWidget(LabelYearlyExpense);
@@ -455,7 +508,7 @@ public:
         verticalLayout_5->setContentsMargins(0, 0, 0, 0);
         label_5 = new QLabel(verticalLayoutWidget_7);
         label_5->setObjectName("label_5");
-        label_5->setFont(font5);
+        label_5->setFont(font6);
         label_5->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         verticalLayout_5->addWidget(label_5);
@@ -466,7 +519,7 @@ public:
 
         LabelYearlyIncome = new QLabel(verticalLayoutWidget_7);
         LabelYearlyIncome->setObjectName("LabelYearlyIncome");
-        LabelYearlyIncome->setFont(font5);
+        LabelYearlyIncome->setFont(font6);
         LabelYearlyIncome->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         verticalLayout_5->addWidget(LabelYearlyIncome);
@@ -484,7 +537,7 @@ public:
         verticalLayout_8->setContentsMargins(0, 0, 0, 0);
         label_14 = new QLabel(verticalLayoutWidget_10);
         label_14->setObjectName("label_14");
-        label_14->setFont(font5);
+        label_14->setFont(font6);
         label_14->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         verticalLayout_8->addWidget(label_14);
@@ -495,7 +548,7 @@ public:
 
         LabelYearlyResult = new QLabel(verticalLayoutWidget_10);
         LabelYearlyResult->setObjectName("LabelYearlyResult");
-        LabelYearlyResult->setFont(font5);
+        LabelYearlyResult->setFont(font6);
         LabelYearlyResult->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         verticalLayout_8->addWidget(LabelYearlyResult);
@@ -513,7 +566,7 @@ public:
         verticalLayout_7->setContentsMargins(0, 0, 0, 0);
         label_12 = new QLabel(verticalLayoutWidget_9);
         label_12->setObjectName("label_12");
-        label_12->setFont(font5);
+        label_12->setFont(font6);
         label_12->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         verticalLayout_7->addWidget(label_12);
@@ -524,7 +577,7 @@ public:
 
         LabelYearlySaving = new QLabel(verticalLayoutWidget_9);
         LabelYearlySaving->setObjectName("LabelYearlySaving");
-        LabelYearlySaving->setFont(font5);
+        LabelYearlySaving->setFont(font6);
         LabelYearlySaving->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         verticalLayout_7->addWidget(LabelYearlySaving);
@@ -546,10 +599,19 @@ public:
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
         menubar->setGeometry(QRect(0, 0, 800, 22));
+        menu = new QMenu(menubar);
+        menu->setObjectName("menu");
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
         MainWindow->setStatusBar(statusbar);
+
+        menubar->addAction(menu->menuAction());
+        menu->addAction(actionDashboard);
+        menu->addAction(actionSummary);
+        menu->addAction(actionSummary_2);
+        menu->addAction(actionSummary_3);
+        menu->addAction(actionSetting);
 
         retranslateUi(MainWindow);
 
@@ -559,6 +621,11 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        actionDashboard->setText(QCoreApplication::translate("MainWindow", "Dashboard", nullptr));
+        actionSummary->setText(QCoreApplication::translate("MainWindow", "Wealth", nullptr));
+        actionSummary_2->setText(QCoreApplication::translate("MainWindow", "Loan", nullptr));
+        actionSummary_3->setText(QCoreApplication::translate("MainWindow", "Summary", nullptr));
+        actionSetting->setText(QCoreApplication::translate("MainWindow", "Setting", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "My Household Account Bank", nullptr));
         label_10->setText(QCoreApplication::translate("MainWindow", "\354\235\264\353\262\210 \353\213\254 \354\232\224\354\225\275", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "\354\210\230\354\236\205", nullptr));
@@ -571,6 +638,7 @@ public:
         ButtonDetailsInsert->setText(QCoreApplication::translate("MainWindow", "\354\266\224\352\260\200", nullptr));
         ButtonDetailsUpdate->setText(QCoreApplication::translate("MainWindow", "\354\210\230\354\240\225", nullptr));
         ButtonDetailsDelete->setText(QCoreApplication::translate("MainWindow", "\354\202\255\354\240\234", nullptr));
+        label_7->setText(QCoreApplication::translate("MainWindow", "\352\262\200\354\203\211", nullptr));
         label_4->setText(QCoreApplication::translate("MainWindow", "\354\230\254\355\225\264 \354\232\224\354\225\275", nullptr));
         label_9->setText(QCoreApplication::translate("MainWindow", "\354\264\235 \354\247\200\354\266\234", nullptr));
         LabelYearlyExpense->setText(QCoreApplication::translate("MainWindow", "9,999,999,999,999\354\233\220", nullptr));
@@ -580,6 +648,7 @@ public:
         LabelYearlyResult->setText(QCoreApplication::translate("MainWindow", "9,999,999,999,999\354\233\220", nullptr));
         label_12->setText(QCoreApplication::translate("MainWindow", "\354\264\235 \354\240\200\354\266\225", nullptr));
         LabelYearlySaving->setText(QCoreApplication::translate("MainWindow", "9,999,999,999,999\354\233\220", nullptr));
+        menu->setTitle(QCoreApplication::translate("MainWindow", "\353\251\224\353\211\264", nullptr));
     } // retranslateUi
 
 };
