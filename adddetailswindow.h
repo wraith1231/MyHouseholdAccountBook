@@ -4,6 +4,8 @@
 #include <QDialog>
 #include "./CommonStructs.h"
 
+enum class TransactionType;
+
 namespace Ui {
 class AddDetailsWindow;
 }
@@ -19,12 +21,16 @@ public:
 
 private slots:
     void Init();
-    void on_comboBox_2_currentTextChanged(const QString &arg1);
+
+    void on_ComboboxDetailsAddType_currentIndexChanged(int index);
+
+    void on_ComboboxDetailsAddCurrency_currentIndexChanged(int index);
 
 private:
     Ui::AddDetailsWindow *ui;
 
     std::optional<Transaction> _data;
+    void ClearCategoryItems(TransactionType t);
 };
 
 #endif // ADDDETAILSWINDOW_H

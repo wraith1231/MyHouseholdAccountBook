@@ -3,11 +3,14 @@
 #include "./CommonStructs.h"
 #include <QDateEdit>
 #include "./CommonTypes.h"
+#include "enumconverter.h"
 
 AddDetailsWindow::AddDetailsWindow(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::AddDetailsWindow)
 {
+    ui->setupUi(this);
+    ui->DateDetailsAdd->setDate(QDate::currentDate());
 
     Init();
 }
@@ -17,6 +20,7 @@ AddDetailsWindow::AddDetailsWindow(const Transaction &transaction, QWidget *pare
     , ui(new Ui::AddDetailsWindow)
     , _data(transaction)
 {
+    ui->setupUi(this);
 
     Init();
 }
@@ -30,17 +34,77 @@ void AddDetailsWindow::Init()
 {
     if(!_data.has_value())
     {
-        _data->id = -1;
+        _data.emplace();
         _data->date = ui->DateDetailsAdd->date();
         _data->type = TransactionType::Income;
-        //_data->category = static_cast<IncomeCategory>( IncomeCategory::Salary);
-        //_data->currency = Currency::KRW;
+        _data->category = EnumConverter::ToString(IncomeCategory::Salary);
+        _data->currency = Currency::KRW;
+        _data->memo = "";
+        _data->exchangeRate = 1.0f;
+        _data->money = 0;
     }
 
-    ui->setupUi(this);
+    ui->ComboboxDetailsAddType->setCurrentIndex(static_cast<int>(_data->type));
+
+    ClearCategoryItems(_data->type);
+    switch (_data->type) {
+    case TransactionType::Income:
+        ui->ComboboxDetailsAddCategory->setCurrentIndex(static_cast<int>(EnumConverter::ToIncomeCategory(_data->category)));
+        break;
+    case TransactionType::Expense:
+        ui->ComboboxDetailsAddCategory->setCurrentIndex(static_cast<int>(EnumConverter::ToExpenseCategory(_data->category)));
+        break;
+    case TransactionType::Transfer:
+        ui->ComboboxDetailsAddCategory->setCurrentIndex(static_cast<int>(EnumConverter::ToTransferCategory(_data->category)));
+        break;
+    }
+
+    ui->ComboboxDetailsAddCurrency->setCurrentIndex(static_cast<int>(_data->currency));
+    ui->SpinboxDetailsAddExchangeRate->setMaximum(100000);
+    on_ComboboxDetailsAddCurrency_currentIndexChanged(static_cast<int>(_data->currency));
+    ui->SpinboxDetailsAddExchangeRate->setValue(_data->exchangeRate);
+    ui->SpinboxDetailsAddMoney->setValue(_data->money);
+    ui->TextDetailAddMemo->setText(_data->memo);
+
 }
 
-void AddDetailsWindow::on_comboBox_2_currentTextChanged(const QString &arg1)
+
+void AddDetailsWindow::ClearCategoryItems(TransactionType t)
 {
+    switch(t)
+    {
+    case TransactionType::Income:
+        ui->ComboboxDetailsAddCategory->clear();
+        for(int i = 0; i < static_cast<int>(IncomeCategory::Etc) + 1; i++)
+            ui->ComboboxDetailsAddCategory->addItem(EnumConverter::ToString(static_cast<IncomeCategory>(i)));
 
+        break;
+    case TransactionType::Expense:
+        ui->ComboboxDetailsAddCategory->clear();
+        for(int i = 0; i < static_cast<int>(ExpenseCategory::Etc) + 1; i++)
+            ui->ComboboxDetailsAddCategory->addItem(EnumConverter::ToString(static_cast<ExpenseCategory>(i)));
+        break;
+    case TransactionType::Transfer:
+        ui->ComboboxDetailsAddCategory->clear();
+        for(int i = 0; i < static_cast<int>(TransferCategory::Etc) + 1; i++)
+            ui->ComboboxDetailsAddCategory->addItem(EnumConverter::ToString(static_cast<TransferCategory>(i)));
+        break;
+    }
+    ui->ComboboxDetailsAddCategory->setCurrentIndex(0);
 }
+void AddDetailsWindow::on_ComboboxDetailsAddType_currentIndexChanged(int index)
+{
+    ClearCategoryItems(static_cast<TransactionType>(index));
+}
+
+
+void AddDetailsWindow::on_ComboboxDetailsAddCurrency_currentIndexChanged(int index)
+{
+    if (index == static_cast<int>(Currency::KRW))
+    {
+        ui->SpinboxDetailsAddExchangeRate->setEnabled(false);
+        ui->SpinboxDetailsAddExchangeRate->setValue(1);
+    }
+    else ui->SpinboxDetailsAddExchangeRate->setEnabled(true);
+}
+

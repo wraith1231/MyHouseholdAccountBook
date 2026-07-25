@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "./monthlysummary.h"
 #include "./monthlydetails.h"
+#include "./adddetailswindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -29,7 +29,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_ButtonDetailsInsert_clicked()
 {
-
+    AddDetailsWindow addDialog(this);
+    addDialog.setModal(true);
+    addDialog.exec();
 }
 
 

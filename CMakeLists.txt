@@ -31,6 +31,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         adddetailswindow.h adddetailswindow.cpp adddetailswindow.ui
         CommonStructs.h
         transactionmanager.h transactionmanager.cpp
+        enumconverter.h enumconverter.cpp
 
 
     )

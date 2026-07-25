@@ -7,12 +7,12 @@
 
 struct Transaction
 {
-    int id;
+    //int id;
     QDate date;
     TransactionType type;
     QString category;
     QString memo;
-    QString currency;
+    Currency currency;
     double exchangeRate;
     double money;
 };
