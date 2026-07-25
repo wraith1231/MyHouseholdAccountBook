@@ -1,5 +1,6 @@
 #ifndef COMMONTYPES_H
 #define COMMONTYPES_H
+#include <QString>
 
 enum class TransactionType
 {

@@ -30,6 +30,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         monthlydetails.h monthlydetails.cpp
         adddetailswindow.h adddetailswindow.cpp adddetailswindow.ui
         CommonStructs.h
+        transactionmanager.h transactionmanager.cpp
+
 
     )
 # Define target properties for Android with Qt 6 as:
