@@ -5,6 +5,7 @@
 
 class MonthlySummary;
 class MonthlyDetails;
+class TransactionManager;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,6 +20,10 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
+
+    void RefreshAll();
+    void RefreshTable();
+    void RefreshSummary();
 
 private slots:
     void on_ButtonDetailsInsert_clicked();
@@ -35,5 +40,6 @@ private:
     Ui::MainWindow *ui;
     MonthlySummary* _monthlySummary;
     MonthlyDetails* _monthlyDetails;
+    TransactionManager* _transactionManager;
 };
 #endif // MAINWINDOW_H

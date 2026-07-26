@@ -19,6 +19,11 @@ public:
     explicit AddDetailsWindow(const Transaction &transaction, QWidget *parent = nullptr);
     ~AddDetailsWindow();
 
+    Transaction GetTransaction() { return *_data;}
+
+signals:
+    void TransactionAdded();
+
 private slots:
     void Init();
 
@@ -26,10 +31,13 @@ private slots:
 
     void on_ComboboxDetailsAddCurrency_currentIndexChanged(int index);
 
+    void on_buttonBox_accepted();
+
 private:
     Ui::AddDetailsWindow *ui;
 
     std::optional<Transaction> _data;
+
     void ClearCategoryItems(TransactionType t);
 };
 

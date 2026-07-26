@@ -5,15 +5,19 @@
 #include <QTableView>
 #include <QStandardItemModel>
 
+class TransactionManager;
+
 class MonthlyDetails : public QObject
 {
 public:
-    explicit MonthlyDetails(QTableView* tableView, QObject *parent = nullptr);
+    explicit MonthlyDetails(QTableView* tableView, TransactionManager* tm, QObject *parent = nullptr);
     void Init();
 
+    void Refresh();
 private:
     QTableView* _tableView;
     QStandardItemModel* _model;
+    TransactionManager* _tm;
 
 };
 

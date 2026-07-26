@@ -4,6 +4,7 @@
 #include <QDateEdit>
 #include "./CommonTypes.h"
 #include "enumconverter.h"
+#include "transactionmanager.h"
 
 AddDetailsWindow::AddDetailsWindow(QWidget *parent)
     : QDialog(parent)
@@ -60,7 +61,7 @@ void AddDetailsWindow::Init()
     }
 
     ui->ComboboxDetailsAddCurrency->setCurrentIndex(static_cast<int>(_data->currency));
-    ui->SpinboxDetailsAddExchangeRate->setMaximum(100000);
+    ui->SpinboxDetailsAddExchangeRate->setMaximum(10000000);
     on_ComboboxDetailsAddCurrency_currentIndexChanged(static_cast<int>(_data->currency));
     ui->SpinboxDetailsAddExchangeRate->setValue(_data->exchangeRate);
     ui->SpinboxDetailsAddMoney->setValue(_data->money);
@@ -106,5 +107,20 @@ void AddDetailsWindow::on_ComboboxDetailsAddCurrency_currentIndexChanged(int ind
         ui->SpinboxDetailsAddExchangeRate->setValue(1);
     }
     else ui->SpinboxDetailsAddExchangeRate->setEnabled(true);
+}
+
+
+void AddDetailsWindow::on_buttonBox_accepted()
+{
+    _data->date = ui->DateDetailsAdd->date();
+    _data->type = static_cast<TransactionType>(ui->ComboboxDetailsAddType->currentIndex());
+
+    _data->category = ui->ComboboxDetailsAddCategory->currentText();
+    _data->memo = ui->TextDetailAddMemo->text();
+    _data->currency = static_cast<Currency>(ui->ComboboxDetailsAddCurrency->currentIndex());
+    _data->exchangeRate = ui->SpinboxDetailsAddExchangeRate->value();
+    _data->money = ui->SpinboxDetailsAddMoney->value();
+
+    accept();
 }
 

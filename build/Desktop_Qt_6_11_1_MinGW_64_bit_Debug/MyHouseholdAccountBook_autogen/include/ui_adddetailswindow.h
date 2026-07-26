@@ -217,6 +217,7 @@ public:
 
         SpinboxDetailsAddMoney = new QDoubleSpinBox(gridLayoutWidget_2);
         SpinboxDetailsAddMoney->setObjectName("SpinboxDetailsAddMoney");
+        SpinboxDetailsAddMoney->setMaximum(1000000000.000000000000000);
 
         verticalLayout_9->addWidget(SpinboxDetailsAddMoney);
 
