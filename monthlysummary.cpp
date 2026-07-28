@@ -1,9 +1,14 @@
 #include "monthlysummary.h"
 #include <QHeaderView>
+#include <QDate>
+#include "transactionmanager.h"
+#include "CommonStructs.h"
+#include "CommonTypes.h"
 
-MonthlySummary::MonthlySummary(QTableView* tableView, QObject *parent) : QObject(parent), _tableView(tableView)
+MonthlySummary::MonthlySummary(TransactionManager* tm, QTableView* tableView, QObject *parent) : QObject(parent), _tableView(tableView)
 {
     _model = new QStandardItemModel(this);
+    _tm = tm;
     SetupModel();
 }
 
@@ -21,6 +26,40 @@ void MonthlySummary::SetupModel()
     _tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     _tableView->verticalHeader()->setVisible(false);
 */
+}
+
+void MonthlySummary::Refresh(QDate date)
+{
+    const auto& transactions = _tm->GetTransactionVector();
+
+    QDate begin(date.year(), date.month(), 1);
+    QDate end = begin.addMonths(1);
+
+    double income = 0;
+    double expense = 0;
+    double transfer = 0;
+    for (const auto& t : transactions)
+    {
+        if(t.date >= begin && t.date < end)
+        {
+            switch(t.type)
+            {
+            case TransactionType::Income:
+                income += t.money * t.exchangeRate;
+                break;
+            case TransactionType::Expense:
+                expense += t.money * t.exchangeRate;
+                break;
+            case TransactionType::Transfer:
+                transfer += t.money * t.exchangeRate;
+                break;
+            default:
+                break;
+            }
+        }
+    }
+
+
 }
 
 /*

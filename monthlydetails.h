@@ -14,6 +14,9 @@ public:
     void Init();
 
     void Refresh();
+    void RefreshCurrentMonth(QDate date);
+
+    int CurrentIndex();
 private:
     QTableView* _tableView;
     QStandardItemModel* _model;

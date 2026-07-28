@@ -6,6 +6,7 @@
 class MonthlySummary;
 class MonthlyDetails;
 class TransactionManager;
+class TransactionSummary;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -23,7 +24,8 @@ public:
 
     void RefreshAll();
     void RefreshTable();
-    void RefreshSummary();
+    void RefreshMonthlySummary();
+    void RefreshYearlySummary();
 
 private slots:
     void on_ButtonDetailsInsert_clicked();
@@ -36,10 +38,15 @@ private slots:
 
     void on_SearchDetails_textChanged();
 
+    void on_BtnPrevMonth_clicked();
+
+    void on_BtnNextMonth_clicked();
+
 private:
     Ui::MainWindow *ui;
-    MonthlySummary* _monthlySummary;
-    MonthlyDetails* _monthlyDetails;
-    TransactionManager* _transactionManager;
+    MonthlySummary* _monthlySummary = nullptr;
+    MonthlyDetails* _monthlyDetails = nullptr;
+    TransactionManager* _transactionManager = nullptr;
+    TransactionSummary* _transactionSummary = nullptr;
 };
 #endif // MAINWINDOW_H

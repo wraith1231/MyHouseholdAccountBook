@@ -18,6 +18,13 @@ namespace EnumConverter
     QString ToString(ExpenseCategory t);
     QString ToString(TransferCategory t);
 
+    QString ToKorean(TransactionType t);
+    QString ToKorean(SortOrder t);
+    QString ToKorean(Currency t);
+    QString ToKorean(IncomeCategory t);
+    QString ToKorean(ExpenseCategory t);
+    QString ToKorean(TransferCategory t);
+
     TransactionType ToTransactionType(QString t);
     SortOrder ToSortOrder(QString t);
     Currency ToCurrency(QString t);

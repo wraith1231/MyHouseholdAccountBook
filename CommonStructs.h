@@ -7,7 +7,7 @@
 
 struct Transaction
 {
-    //int id;
+    int id = -1;
     QDate date;
     TransactionType type;
     QString category;

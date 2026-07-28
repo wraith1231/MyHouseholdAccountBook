@@ -11,14 +11,15 @@ public:
     void SortByDate(bool ascending = true);
 
     void AddTransaction(const Transaction& t);
-    void SetTransaction(Transaction t);
-    const Transaction* GetTransaction(size_t num);
+    void SetTransaction(int id, Transaction t);
+    const Transaction* GetTransaction(int id);
     const std::vector<Transaction>& GetTransactionVector() const;
-    bool RemoveTransaction(size_t num);
+    bool RemoveTransaction(int id);
 
 
 private:
     std::vector<Transaction> _transactions;
+    int _nextid = 1;
 };
 
 #endif // TRANSACTIONMANAGER_H

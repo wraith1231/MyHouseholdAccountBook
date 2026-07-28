@@ -48,7 +48,11 @@ public:
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer;
+    QHBoxLayout *horizontalLayout_3;
+    QPushButton *BtnPrevMonth;
     QDateEdit *dateEdit;
+    QHBoxLayout *horizontalLayout_5;
+    QPushButton *BtnNextMonth;
     QSpacerItem *horizontalSpacer_2;
     QWidget *gridLayoutWidget;
     QGridLayout *MonthlySummaryLayout;
@@ -184,15 +188,41 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer);
 
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName("horizontalLayout_3");
+        BtnPrevMonth = new QPushButton(horizontalLayoutWidget);
+        BtnPrevMonth->setObjectName("BtnPrevMonth");
+
+        horizontalLayout_3->addWidget(BtnPrevMonth);
+
+
+        horizontalLayout->addLayout(horizontalLayout_3);
+
         dateEdit = new QDateEdit(horizontalLayoutWidget);
         dateEdit->setObjectName("dateEdit");
+        dateEdit->setCalendarPopup(false);
 
         horizontalLayout->addWidget(dateEdit);
+
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setObjectName("horizontalLayout_5");
+        BtnNextMonth = new QPushButton(horizontalLayoutWidget);
+        BtnNextMonth->setObjectName("BtnNextMonth");
+
+        horizontalLayout_5->addWidget(BtnNextMonth);
+
+
+        horizontalLayout->addLayout(horizontalLayout_5);
 
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_2);
 
+        horizontalLayout->setStretch(0, 50);
+        horizontalLayout->setStretch(1, 1);
+        horizontalLayout->setStretch(2, 10);
+        horizontalLayout->setStretch(3, 1);
+        horizontalLayout->setStretch(4, 50);
         gridLayoutWidget = new QWidget(centralwidget);
         gridLayoutWidget->setObjectName("gridLayoutWidget");
         gridLayoutWidget->setGeometry(QRect(10, 70, 781, 131));
@@ -627,6 +657,8 @@ public:
         actionSummary_3->setText(QCoreApplication::translate("MainWindow", "Summary", nullptr));
         actionSetting->setText(QCoreApplication::translate("MainWindow", "Setting", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "My Household Account Bank", nullptr));
+        BtnPrevMonth->setText(QCoreApplication::translate("MainWindow", "<", nullptr));
+        BtnNextMonth->setText(QCoreApplication::translate("MainWindow", ">", nullptr));
         label_10->setText(QCoreApplication::translate("MainWindow", "\354\235\264\353\262\210 \353\213\254 \354\232\224\354\225\275", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "\354\210\230\354\236\205", nullptr));
         LabelMonthlyIncome->setText(QCoreApplication::translate("MainWindow", "9,999,999,999,999,999,999,990\354\233\220", nullptr));

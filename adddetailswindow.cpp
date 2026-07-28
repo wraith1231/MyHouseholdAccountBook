@@ -22,6 +22,7 @@ AddDetailsWindow::AddDetailsWindow(const Transaction &transaction, QWidget *pare
     , _data(transaction)
 {
     ui->setupUi(this);
+    ui->DateDetailsAdd->setDate(_data->date);
 
     Init();
 }
@@ -38,7 +39,7 @@ void AddDetailsWindow::Init()
         _data.emplace();
         _data->date = ui->DateDetailsAdd->date();
         _data->type = TransactionType::Income;
-        _data->category = EnumConverter::ToString(IncomeCategory::Salary);
+        _data->category = EnumConverter::ToKorean(IncomeCategory::Salary);
         _data->currency = Currency::KRW;
         _data->memo = "";
         _data->exchangeRate = 1.0f;
@@ -77,18 +78,18 @@ void AddDetailsWindow::ClearCategoryItems(TransactionType t)
     case TransactionType::Income:
         ui->ComboboxDetailsAddCategory->clear();
         for(int i = 0; i < static_cast<int>(IncomeCategory::Etc) + 1; i++)
-            ui->ComboboxDetailsAddCategory->addItem(EnumConverter::ToString(static_cast<IncomeCategory>(i)));
+            ui->ComboboxDetailsAddCategory->addItem(EnumConverter::ToKorean(static_cast<IncomeCategory>(i)));
 
         break;
     case TransactionType::Expense:
         ui->ComboboxDetailsAddCategory->clear();
         for(int i = 0; i < static_cast<int>(ExpenseCategory::Etc) + 1; i++)
-            ui->ComboboxDetailsAddCategory->addItem(EnumConverter::ToString(static_cast<ExpenseCategory>(i)));
+            ui->ComboboxDetailsAddCategory->addItem(EnumConverter::ToKorean(static_cast<ExpenseCategory>(i)));
         break;
     case TransactionType::Transfer:
         ui->ComboboxDetailsAddCategory->clear();
         for(int i = 0; i < static_cast<int>(TransferCategory::Etc) + 1; i++)
-            ui->ComboboxDetailsAddCategory->addItem(EnumConverter::ToString(static_cast<TransferCategory>(i)));
+            ui->ComboboxDetailsAddCategory->addItem(EnumConverter::ToKorean(static_cast<TransferCategory>(i)));
         break;
     }
     ui->ComboboxDetailsAddCategory->setCurrentIndex(0);

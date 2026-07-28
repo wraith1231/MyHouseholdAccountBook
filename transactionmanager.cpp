@@ -21,19 +21,26 @@ void TransactionManager::SortByDate(bool ascending)
 
 void TransactionManager::AddTransaction(const Transaction &t)
 {
-    _transactions.push_back(t);
+    auto tr = t;
+    tr.id = _nextid++;
+    _transactions.push_back(tr);
 }
 
-void TransactionManager::SetTransaction(Transaction t)
+void TransactionManager::SetTransaction(int id, Transaction t)
 {
+    auto it = std::find_if(_transactions.begin(), _transactions.end(), [id](const Transaction& t){return t.id == id;});
 
+    if(it != _transactions.end())
+        *it = t;
 }
-const Transaction* TransactionManager::GetTransaction(size_t num)
+const Transaction* TransactionManager::GetTransaction(int id)
 {
-    if(num >= _transactions.size())
-        return nullptr;                     //호출하는 쪽에서 오류 messagebox 띄우는 작업 해줘야함
+    auto it = std::find_if(_transactions.begin(), _transactions.end(), [id](const Transaction& t){return t.id == id;});
 
-    return &_transactions[num];
+    if(it != _transactions.end())
+        return it.base();
+
+    return nullptr;
 }
 
 const std::vector<Transaction> &TransactionManager::GetTransactionVector() const
@@ -41,7 +48,15 @@ const std::vector<Transaction> &TransactionManager::GetTransactionVector() const
     return _transactions;
 }
 
-bool TransactionManager::RemoveTransaction(size_t num)
+bool TransactionManager::RemoveTransaction(int id)
 {
+    auto it = std::find_if(_transactions.begin(), _transactions.end(), [id](const Transaction& t){return t.id == id;});
 
+    if(it != _transactions.end())
+    {
+        _transactions.erase(it);
+        return true;
+    }
+
+    return false;
 }
