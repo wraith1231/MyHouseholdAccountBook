@@ -1,5 +1,6 @@
 #include "transactionmanager.h"
 #include "./CommonStructs.h"
+#include <algorithm>
 
 TransactionManager::TransactionManager()
 {
@@ -38,7 +39,7 @@ const Transaction* TransactionManager::GetTransaction(int id)
     auto it = std::find_if(_transactions.begin(), _transactions.end(), [id](const Transaction& t){return t.id == id;});
 
     if(it != _transactions.end())
-        return it.base();
+        return &(*it);
 
     return nullptr;
 }

@@ -120,7 +120,7 @@ void MainWindow::on_dateEdit_userDateChanged(const QDate &date)
 
     if(_monthlyDetails == nullptr)
         return;
-    _monthlyDetails->RefreshCurrentMonth(date);
+    RefreshAll();
 }
 
 
@@ -134,7 +134,8 @@ void MainWindow::on_BtnPrevMonth_clicked()
 {
     auto date = ui->dateEdit->date().addMonths(-1);
 
-    if(date.month() > QDate::currentDate().month() && date.year() >= QDate::currentDate().year()) return;
+    if(date.month() > QDate::currentDate().month() && date.year() >= QDate::currentDate().year()
+        || date.year() > QDate::currentDate().year()) return;
 
     ui->dateEdit->setDate(date);
     RefreshAll();
@@ -145,7 +146,8 @@ void MainWindow::on_BtnNextMonth_clicked()
 {
     auto date = ui->dateEdit->date().addMonths(1);
 
-    if(date.month() > QDate::currentDate().month() && date.year() >= QDate::currentDate().year()) return;
+    if(date.month() > QDate::currentDate().month() && date.year() >= QDate::currentDate().year()
+        || date.year() > QDate::currentDate().year()) return;
     ui->dateEdit->setDate(date);
     RefreshAll();
 }

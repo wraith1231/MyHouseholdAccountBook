@@ -69,7 +69,6 @@ void MonthlyDetails::RefreshCurrentMonth(QDate date)
             items.append(new QStandardItem(t.memo));
             items.append(new QStandardItem(EnumConverter::ToKorean(t.currency)));
             items.append(new QStandardItem(QString::number(t.exchangeRate, 'f', 2)));
-            items.append(new QStandardItem(t.id));
             QLocale locale(QLocale::Korean);
             items.append(new QStandardItem(locale.toString(t.money, 'f', 2)));
             items.first()->setData(t.id, Qt::UserRole);

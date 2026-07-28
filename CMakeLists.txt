@@ -24,7 +24,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
 
-        monthlysummary.h monthlysummary.cpp
+
         Utils.h
         CommonTypes.h
         monthlydetails.h monthlydetails.cpp
@@ -32,7 +32,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         CommonStructs.h
         transactionmanager.h transactionmanager.cpp
         enumconverter.h enumconverter.cpp
-        yearlysummary.h yearlysummary.cpp
+
         transactionsummary.h transactionsummary.cpp
 
 
