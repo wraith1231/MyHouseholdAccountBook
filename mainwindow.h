@@ -7,6 +7,7 @@ class MonthlySummary;
 class MonthlyDetails;
 class TransactionManager;
 class TransactionSummary;
+class SQLDataManager;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -48,5 +49,6 @@ private:
     MonthlyDetails* _monthlyDetails = nullptr;
     TransactionManager* _transactionManager = nullptr;
     TransactionSummary* _transactionSummary = nullptr;
+    SQLDataManager* _dbManager = nullptr;
 };
 #endif // MAINWINDOW_H

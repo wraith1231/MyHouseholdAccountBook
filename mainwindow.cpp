@@ -4,12 +4,14 @@
 #include "./adddetailswindow.h"
 #include "transactionmanager.h"
 #include "transactionsummary.h"
+#include "sqldatamanager.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    _dbManager = new SQLDataManager();
 
     _transactionManager = new TransactionManager();
     //Time Set Start

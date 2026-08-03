@@ -11,6 +11,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Sql)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -34,6 +35,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         enumconverter.h enumconverter.cpp
 
         transactionsummary.h transactionsummary.cpp
+        sqldatamanager.h sqldatamanager.cpp
 
 
     )
@@ -81,3 +83,5 @@ install(TARGETS MyHouseholdAccountBook
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(MyHouseholdAccountBook)
 endif()
+
+target_link_libraries(MyHouseholdAccountBook PRIVATE Qt6::Sql)
