@@ -22,9 +22,16 @@ void TransactionManager::SortByDate(bool ascending)
 
 void TransactionManager::AddTransaction(const Transaction &t)
 {
-    auto tr = t;
-    tr.id = _nextid++;
-    _transactions.push_back(tr);
+    _transactions.push_back(t);
+}
+
+void TransactionManager::AddTransaction(const std::vector<Transaction> transactions)
+{
+    size_t size = transactions.size();
+    for(size_t i = 0; i < size; i++)
+    {
+        AddTransaction(transactions[i]);
+    }
 }
 
 void TransactionManager::SetTransaction(int id, Transaction t)

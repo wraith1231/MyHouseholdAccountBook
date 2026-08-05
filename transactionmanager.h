@@ -11,6 +11,7 @@ public:
     void SortByDate(bool ascending = true);
 
     void AddTransaction(const Transaction& t);
+    void AddTransaction(const std::vector<Transaction> transactions);
     void SetTransaction(int id, Transaction t);
     const Transaction* GetTransaction(int id);
     const std::vector<Transaction>& GetTransactionVector() const;

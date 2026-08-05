@@ -14,16 +14,17 @@ MainWindow::MainWindow(QWidget *parent)
     _dbManager = new SQLDataManager();
 
     _transactionManager = new TransactionManager();
+    _transactionManager->AddTransaction(_dbManager->SelectAllTransactionsFromTransactions());
     //Time Set Start
     ui->dateEdit->setDisplayFormat("yyyy-MM");
     ui->dateEdit->setCalendarPopup(false);
 
     ui->dateEdit->setDate(QDate::currentDate());
 
-
     //Time Set End
     _monthlyDetails = new MonthlyDetails(ui->tableMonthlyDetails, _transactionManager, this);
     _transactionSummary = new TransactionSummary(_transactionManager);
+    RefreshAll();
     //_monthlySummary = new MonthlySummary(ui->MonthlySummaryView, this);
 
 }
@@ -76,14 +77,11 @@ void MainWindow::on_ButtonDetailsInsert_clicked()
     addDialog.setModal(true);
     if (addDialog.exec() == QDialog::Accepted)
     {
-        _transactionManager->AddTransaction(addDialog.GetTransaction());
+        Transaction t = addDialog.GetTransaction();
+        _dbManager->InsertTransaction(t);
+        _transactionManager->AddTransaction(t);
         RefreshAll();
     }
-
-    // connect(&addDialog,
-    //         &AddDetailsWindow::TransactionAdded,
-    //         this,
-    //         &MainWindow::RefreshAll);
 }
 
 
@@ -96,7 +94,9 @@ void MainWindow::on_ButtonDetailsUpdate_clicked()
     addDialog.setModal(true);
     if (addDialog.exec() == QDialog::Accepted)
     {
-        _transactionManager->SetTransaction(index, addDialog.GetTransaction());
+        Transaction t = addDialog.GetTransaction();
+        _dbManager->UpdateTransaction(t);
+        _transactionManager->SetTransaction(index, t);
         RefreshAll();
     }
 
@@ -109,6 +109,7 @@ void MainWindow::on_ButtonDetailsDelete_clicked()
 
     if(index < 0) return;
 
+    _dbManager->DeleteTransaction(index);
     _transactionManager->RemoveTransaction(index);
     RefreshAll();
 }
