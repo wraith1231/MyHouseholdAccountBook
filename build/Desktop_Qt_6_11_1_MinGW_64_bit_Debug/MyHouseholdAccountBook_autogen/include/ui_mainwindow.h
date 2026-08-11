@@ -433,7 +433,7 @@ public:
 
         horizontalLayoutWidget_2 = new QWidget(widget_5);
         horizontalLayoutWidget_2->setObjectName("horizontalLayoutWidget_2");
-        horizontalLayoutWidget_2->setGeometry(QRect(400, 50, 371, 31));
+        horizontalLayoutWidget_2->setGeometry(QRect(400, 50, 371, 41));
         horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget_2);
         horizontalLayout_2->setObjectName("horizontalLayout_2");
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);

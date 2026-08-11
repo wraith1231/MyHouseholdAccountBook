@@ -78,6 +78,40 @@ void MonthlyDetails::RefreshCurrentMonth(QDate date)
     }
 }
 
+void MonthlyDetails::RefreshCurrentMonthSearch(QDate date, QString search)
+{
+    _model->clear();
+    _model->setHorizontalHeaderLabels({"날짜", "구분", "카테고리",  "내용", "화폐", "환율", "금액"});
+
+    const auto& transactions = _tm->GetTransactionVector();
+
+    QDate begin(date.year(), date.month(), 1);
+    QDate end = begin.addMonths(1);
+
+    for (const auto& t : transactions)
+    {
+        if(t.date >= begin && t.date < end)
+        {
+            if(! (t.memo.contains(search, Qt::CaseInsensitive) || t.category.contains(search, Qt::CaseInsensitive)))
+                continue;
+
+            QList<QStandardItem*> items;
+
+            items.append(new QStandardItem(t.date.toString("MM/dd")));
+            items.append(new QStandardItem(EnumConverter::ToKorean(t.type)));
+            items.append(new QStandardItem(t.category));
+            items.append(new QStandardItem(t.memo));
+            items.append(new QStandardItem(EnumConverter::ToKorean(t.currency)));
+            items.append(new QStandardItem(QString::number(t.exchangeRate, 'f', 2)));
+            QLocale locale(QLocale::Korean);
+            items.append(new QStandardItem(locale.toString(t.money, 'f', 2)));
+            items.first()->setData(t.id, Qt::UserRole);
+
+            _model->appendRow(items);
+        }
+    }
+}
+
 int MonthlyDetails::CurrentIndex()
 {
     return _model->item(_tableView->currentIndex().row(), 0)->data(Qt::UserRole).toInt();

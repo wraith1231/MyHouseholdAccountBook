@@ -15,6 +15,7 @@ public:
 
     void Refresh();
     void RefreshCurrentMonth(QDate date);
+    void RefreshCurrentMonthSearch(QDate date, QString search);
 
     int CurrentIndex();
 private:

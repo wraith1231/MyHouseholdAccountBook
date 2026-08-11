@@ -129,7 +129,7 @@ void MainWindow::on_dateEdit_userDateChanged(const QDate &date)
 
 void MainWindow::on_SearchDetails_textChanged()
 {
-
+    _monthlyDetails->RefreshCurrentMonthSearch(ui->dateEdit->date(), ui->SearchDetails->toPlainText());
 }
 
 
