@@ -494,7 +494,7 @@
           <x>400</x>
           <y>50</y>
           <width>371</width>
-          <height>41</height>
+          <height>31</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -842,38 +842,20 @@
     <property name="title">
      <string>메뉴</string>
     </property>
-    <addaction name="actionDashboard"/>
+    <addaction name="actionWealth"/>
     <addaction name="actionSummary"/>
-    <addaction name="actionSummary_2"/>
-    <addaction name="actionSummary_3"/>
-    <addaction name="actionSetting"/>
    </widget>
    <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionDashboard">
+  <action name="actionWealth">
    <property name="text">
-    <string>Dashboard</string>
+    <string>자산</string>
    </property>
   </action>
   <action name="actionSummary">
    <property name="text">
-    <string>Wealth</string>
-   </property>
-  </action>
-  <action name="actionSummary_2">
-   <property name="text">
-    <string>Loan</string>
-   </property>
-  </action>
-  <action name="actionSummary_3">
-   <property name="text">
-    <string>Summary</string>
-   </property>
-  </action>
-  <action name="actionSetting">
-   <property name="text">
-    <string>Setting</string>
+    <string>통계</string>
    </property>
   </action>
  </widget>

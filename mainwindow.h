@@ -43,6 +43,10 @@ private slots:
 
     void on_BtnNextMonth_clicked();
 
+    void on_actionWealth_triggered();
+
+    void on_actionSummary_triggered();
+
 private:
     Ui::MainWindow *ui;
     MonthlySummary* _monthlySummary = nullptr;

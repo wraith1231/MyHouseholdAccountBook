@@ -36,6 +36,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
         transactionsummary.h transactionsummary.cpp
         sqldatamanager.h sqldatamanager.cpp
+        wealthwindow.h wealthwindow.cpp wealthwindow.ui
+        summarywindow.h summarywindow.cpp summarywindow.ui
 
 
     )

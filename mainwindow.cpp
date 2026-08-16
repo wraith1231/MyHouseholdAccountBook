@@ -155,3 +155,15 @@ void MainWindow::on_BtnNextMonth_clicked()
     RefreshAll();
 }
 
+
+void MainWindow::on_actionWealth_triggered()
+{
+
+}
+
+
+void MainWindow::on_actionSummary_triggered()
+{
+
+}
+
